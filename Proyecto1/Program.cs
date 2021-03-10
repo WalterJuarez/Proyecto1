@@ -8,7 +8,7 @@ namespace Proyecto1
         {
             string op;
             string codSys = "C:/";
-            Repositorio datos = new Repositorio();
+            //Repositorio datos = new Repositorio();
             Console.Write(codSys);
             op = Console.ReadLine();  
             
