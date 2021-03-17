@@ -10,9 +10,33 @@ namespace Proyecto1
             string codSys = "C:/";
             //Repositorio datos = new Repositorio();
             Console.Write(codSys);
-            op = Console.ReadLine();  
+            op = Console.ReadLine();
+
+            while (op != "exit")
+            {
+
+                switch (op)
+                {
+                    case "create":
+                        Console.Write("prueba");
+                        Console.Write(codSys);
+                        op = Console.ReadLine();
+                        break;
+                    case "direc":
+                        Opciones();
+                        Console.Write(codSys);
+                        op = Console.ReadLine();
+                        break;
+
+                    default:
+                        Console.Write("error de comando");
+                        Console.Write(codSys);
+                        op = Console.ReadLine();
+                        break;
+
+                }
+            }
             
-            Opciones();
             
         }
         public static void Opciones()
