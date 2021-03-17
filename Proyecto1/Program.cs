@@ -8,6 +8,7 @@ namespace Proyecto1
         {
             string op;
             string codSys = "C:/";
+            string comentario;
             //Repositorio datos = new Repositorio();
             Console.Write(codSys);
             op = Console.ReadLine();
@@ -18,14 +19,20 @@ namespace Proyecto1
                 switch (op)
                 {
                     case "create":
-                        Console.Write("prueba");
-                        Console.Write(codSys);
+                        Console.Write(codSys + op);
+                        comentario = Console.ReadLine();
                         op = Console.ReadLine();
                         break;
-                    case "direc":
+                    case "dir":
                         Opciones();
                         Console.Write(codSys);
                         op = Console.ReadLine();
+                        break;
+                    case "search":
+                        break;
+                    case "binnacle":
+                        break;
+                    case "delete":
                         break;
 
                     default:
