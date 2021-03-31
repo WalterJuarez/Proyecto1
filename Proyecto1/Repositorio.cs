@@ -6,10 +6,10 @@ namespace Proyecto1
 {
     class Repositorio
     {
-        int contador = 0;
-        string comentario;
-        string contenido;
-        string fecha = DateTime.Now.ToString();
+        int contador = 0 ;
+        public string comentario { get; set; }
+        public string contenido { get; set;}
+        string fecha = DateTime.Now.ToString(); 
 
         public Repositorio(string comentario, string contenido)
         {
@@ -17,6 +17,15 @@ namespace Proyecto1
             this.comentario = comentario;
             this.contenido = contenido;
             this.fecha = fecha;
+        }
+
+        public override string ToString()
+        {
+            return $"Versión No.:  {contador}" + "%" +
+                   $"Fecha: {fecha}" + "%" +
+                   $"Comentario: {comentario}" + "%" +
+                   $"Contenido: {contenido}";
+
         }
 
 
