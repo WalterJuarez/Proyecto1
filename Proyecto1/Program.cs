@@ -11,7 +11,7 @@ namespace Proyecto1
             string comentario;
             string contenido;
             string nombreAr;
-            Nodos<Repositorio> manejoAr = new Nodos<Repositorio>();
+            
             
             Console.Write(codSys);
             op = Console.ReadLine();
@@ -22,34 +22,33 @@ namespace Proyecto1
                 switch (op)
                 {
                     case "create":
-                        Console.Write(manejoAr.pathDirectorio());
+                        Console.Write(Global.manejoAr.pathDirectorio());
                         nombreAr = Console.ReadLine();
-                        contenido = Convert.ToString(manejoAr.LeerArchivo(nombreAr));
+                        contenido = Convert.ToString(Global.manejoAr.LeerArchivo(nombreAr));
                         /*Se agregó este nuevo bloque de if para validar si se almacenará o no un nodo*/
-                        if (!manejoAr.validarNodos())
+                        if (!Global.manejoAr.validarNodos())
                         {
                             Console.WriteLine("La lista enlazada contiene datos");
-                            string lista = manejoAr.recorredeapoyo();
+                            string lista = Global.manejoAr.recorredeapoyo();
                             string contenidoanterior = "";
                             int i = 0;
                             for (i = 0; i < 1; i++)
                             {
                                 string[] nuevoRepositorio = lista.Split("%");
-                                Repositorio ultimaVersion = new Repositorio(nuevoRepositorio[2], nuevoRepositorio[3]);
+                                Repositorio ultimaVersion = new Repositorio(null, null, nuevoRepositorio[2], nuevoRepositorio[3]);
                                 contenidoanterior = ultimaVersion.contenido.ToString();
                             }
                             Console.WriteLine(contenidoanterior.Substring(11));
 
 
-                            if (!manejoAr.CompararContenido(contenido, contenidoanterior.Substring(11)))
+                            if (!Global.manejoAr.CompararContenido(contenido, contenidoanterior.Substring(11)))
                             {
-                                Console.WriteLine("Se crea una nueva versión");
-                                Console.Write(manejoAr.pathDirectorio() + "Ingrese un comentario para el repositorio: ");
+                                Console.WriteLine("EN EL ARCHIVO TXT EXISTE UNA MODIFICACIÓN, SE CREA UNA NUEVA VERSIÓN PRESIONE ENTER");
+                                Console.ReadLine();
+                                Console.Write(Global.manejoAr.pathDirectorio() + "Ingrese un comentario para el repositorio: ");
                                 comentario = Console.ReadLine();
-                                manejoAr.agregarVersion(new Repositorio(comentario, contenido));
+                                Global.manejoAr.agregarVersion(new Repositorio(comentario, contenido));
                                 Console.WriteLine("\n SE ACTUALIZA EL NODO\n");
-                                manejoAr.recorre();
-
                             }
                             else
                             {
@@ -60,20 +59,20 @@ namespace Proyecto1
                         else
                         {
                             Console.WriteLine("La lista enlazada no contiene datos\nSe procede a crear un nuevo repositorio");
-                            Console.Write(manejoAr.pathDirectorio() + "Ingrese un comentario para el repositorio: ");
+                            Console.Write(Global.manejoAr.pathDirectorio() + "Ingrese un comentario para el repositorio: ");
                             comentario = Console.ReadLine();
-                            manejoAr.agregarVersion(new Repositorio(comentario, contenido));
+                            Global.manejoAr.agregarVersion(new Repositorio(comentario, contenido));
                             Console.WriteLine("Se creo un nuevo nodo");
                             Console.WriteLine("Los datos que se encuentran en la lista son:\n");
-                            manejoAr.recorre();
+                            Global.manejoAr.recorre();
                         }
                         op = Console.ReadLine();
                         break;
 
                     case "read":
-                        Console.Write(manejoAr.pathDirectorio());
+                        Console.Write(Global.manejoAr.pathDirectorio());
                         nombreAr = Console.ReadLine();
-                        Console.WriteLine(manejoAr.LeerArchivo(nombreAr));
+                        Console.WriteLine(Global.manejoAr.LeerArchivo(nombreAr));
                         op = Console.ReadLine();
                         break;
                     case "dir":
@@ -84,8 +83,8 @@ namespace Proyecto1
                     case "search":
                         break;
                     case "binnacle":
-                        Console.WriteLine("\nDatos en Bitacora\n");
-                        manejoAr.recorre();
+                        Console.WriteLine("\nDATOS EN BITACORA\n");
+                        Global.manejoAr.recorre();
                         op = Console.ReadLine();
                         break;
                     case "delete":

@@ -6,17 +6,30 @@ namespace Proyecto1
 {
     class Repositorio
     {
-        int contador = 0 ;
+
+        public int contador = 0;
+
+        public string contadorauxiliar;
         public string comentario { get; set; }
-        public string contenido { get; set;}
-        string fecha = DateTime.Now.ToString(); 
+        public string contenido { get; set; }
+        public string fecha;
+        public string fechaapoyo { get; set; }
 
         public Repositorio(string comentario, string contenido)
         {
-            this.contador = contador + 1;
+            
+            this.contador = Global.manejoAr.DevueveCorrelativoVersion()+1;
             this.comentario = comentario;
             this.contenido = contenido;
-            this.fecha = fecha;
+            fecha = DateTime.Now.ToString();
+        }
+
+        public Repositorio(string contadorauxiliar, string fecha, string comentario, string contenido)
+        {
+            this.contadorauxiliar = contadorauxiliar;
+            this.fechaapoyo = fecha;
+            this.comentario = comentario;
+            this.contenido = contenido;
         }
 
         public override string ToString()

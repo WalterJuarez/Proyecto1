@@ -81,7 +81,7 @@ namespace Proyecto1
         }
 
         /*Se crea Función que recorrera la lista del Nodo*/
-        public Array recorre()
+        /*public Array recorre()
         {
             actual = primero;
             int contador = 0;
@@ -103,10 +103,35 @@ namespace Proyecto1
                 i++;
             }
             return nuevaLista;
-        }
+        }*/
 
         /*Se crea una función que servira como apoyo para reccorrer la lista del nodoenlazado
          */
+
+
+
+        public void recorre()
+        {
+            actual = primero;
+            string lista = "";
+            Console.WriteLine("DATOS ALMACENADOS EN LA LISTA\n");
+            string[] nuevoRepositorio;
+            Repositorio ultimaVersion;
+            while (actual != null)
+            {
+                lista = actual.dato.ToString();
+                nuevoRepositorio = lista.Split("%");
+                ultimaVersion = new Repositorio(nuevoRepositorio[0],nuevoRepositorio[1], nuevoRepositorio[2], nuevoRepositorio[3]);
+                Console.WriteLine("\t" + ultimaVersion.contadorauxiliar.ToString());
+                Console.WriteLine("\t" + ultimaVersion.fechaapoyo.ToString());
+                Console.WriteLine("\t" + ultimaVersion.comentario.ToString());
+                Console.WriteLine("\tContenido: " + ultimaVersion.contenido.Substring(12) + "\n");
+                actual = actual.siguiente;
+            }   
+             
+          }
+        
+
         public string recorredeapoyo()
         {
 
@@ -137,6 +162,18 @@ namespace Proyecto1
 
             return comparar;
 
+        }
+
+        public int DevueveCorrelativoVersion()
+        {
+            actual = primero;
+            int contador = 0;
+            while(actual != null)
+            {
+                contador = contador + 1;
+                actual = actual.siguiente;
+            }
+            return contador;
         }
     }
 }
