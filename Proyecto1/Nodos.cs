@@ -175,5 +175,32 @@ namespace Proyecto1
             }
             return contador;
         }
+
+
+        public string BusquedaVersion(string version)
+        {
+            actual = primero;
+            string lista = "";
+            string contenerVersion = "";
+            string[] nuevoRepositorio = null;
+            while (actual != null)
+            {
+                int i = 0;
+                lista = actual.dato.ToString();
+                for (i = 0; i < 1; i++)
+                {
+                    nuevoRepositorio = lista.Split("%");
+                    Repositorio busquedaVersion = new Repositorio(nuevoRepositorio[0], null, null, null);
+                    contenerVersion = busquedaVersion.contadorauxiliar.Substring(14);
+                    if (contenerVersion.Equals(version))
+                    {
+                        return lista;
+                        break;
+                    }
+                }
+                actual = actual.siguiente;
+            }
+            return lista;
+        }
     }
 }

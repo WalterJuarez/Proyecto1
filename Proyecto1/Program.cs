@@ -31,7 +31,7 @@ namespace Proyecto1
                             Console.WriteLine("La lista enlazada contiene datos");
                             string lista = Global.manejoAr.recorredeapoyo();
                             string contenidoanterior = "";
-                            int i = 0;
+                            int i= 0;
                             for (i = 0; i < 1; i++)
                             {
                                 string[] nuevoRepositorio = lista.Split("%");
@@ -81,6 +81,19 @@ namespace Proyecto1
                         op = Console.ReadLine();
                         break;
                     case "search":
+
+                        string nuevaLista = Global.manejoAr.BusquedaVersion("2");
+                        string[] nuevoArreglo = nuevaLista.Split("%");
+                        int j = 0;
+                        for (j = 0; j < 1; j++)
+                        {
+                            Repositorio ultimaVersion = new Repositorio(nuevoArreglo[0], nuevoArreglo[1], nuevoArreglo[2], nuevoArreglo[3]);
+                            Console.WriteLine("\t" + ultimaVersion.contadorauxiliar.ToString());
+                            Console.WriteLine("\t" + ultimaVersion.fechaapoyo.ToString());
+                            Console.WriteLine("\t" + ultimaVersion.comentario.ToString());
+                            Console.WriteLine("\t" + ultimaVersion.contenido.ToString());
+                        }
+                        op = Console.ReadLine();
                         break;
                     case "binnacle":
                         Console.WriteLine("\nDATOS EN BITACORA\n");
