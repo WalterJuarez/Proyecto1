@@ -24,11 +24,11 @@ namespace Proyecto1
                     case "create":
                         Console.Write(Global.manejoAr.pathDirectorio());
                         nombreAr = Console.ReadLine();
-                        contenido = Convert.ToString(Global.manejoAr.LeerArchivo(nombreAr));
+                        contenido = Global.manejoAr.LeerArchivo(nombreAr);
                         /*Se agregó este nuevo bloque de if para validar si se almacenará o no un nodo*/
                         if (!Global.manejoAr.validarNodos())
                         {
-                            Console.WriteLine("La lista enlazada contiene datos");
+                            Console.WriteLine("LA LISTA ENLAZADA CONTIENE DATOS");
                             string lista = Global.manejoAr.recorredeapoyo();
                             string contenidoanterior = "";
                             int i= 0;
@@ -38,9 +38,6 @@ namespace Proyecto1
                                 Repositorio ultimaVersion = new Repositorio(null, null, nuevoRepositorio[2], nuevoRepositorio[3],nuevoRepositorio[4]);
                                 contenidoanterior = ultimaVersion.contenido.ToString();
                             }
-                            Console.WriteLine(contenidoanterior.Substring(11));
-
-
                             if (!Global.manejoAr.CompararContenido(contenido, contenidoanterior.Substring(11)))
                             {
                                 Console.WriteLine("EN EL ARCHIVO TXT EXISTE UNA MODIFICACIÓN, SE CREA UNA NUEVA VERSIÓN PRESIONE ENTER");
@@ -54,7 +51,6 @@ namespace Proyecto1
                             {
                                 Console.WriteLine("La última versión no ha sufrido ningun cambio");
                             }
-
                         }
                         else
                         {
