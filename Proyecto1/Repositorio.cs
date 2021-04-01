@@ -12,6 +12,7 @@ namespace Proyecto1
         public string contadorauxiliar;
         public string comentario { get; set; }
         public string contenido { get; set; }
+
         public string fecha;
         public string fechaapoyo { get; set; }
 
@@ -24,10 +25,10 @@ namespace Proyecto1
             fecha = DateTime.Now.ToString();
         }
 
-        public Repositorio(string contadorauxiliar, string fecha, string comentario, string contenido)
+        public Repositorio(string contadorauxiliar, string fechadeapoyo, string comentario, string contenido)
         {
             this.contadorauxiliar = contadorauxiliar;
-            this.fechaapoyo = fecha;
+            this.fechaapoyo = fechadeapoyo;
             this.comentario = comentario;
             this.contenido = contenido;
         }

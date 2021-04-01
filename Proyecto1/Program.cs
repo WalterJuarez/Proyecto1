@@ -64,7 +64,7 @@ namespace Proyecto1
                             Global.manejoAr.agregarVersion(new Repositorio(comentario, contenido));
                             Console.WriteLine("Se creo un nuevo nodo");
                             Console.WriteLine("Los datos que se encuentran en la lista son:\n");
-                            Global.manejoAr.recorre();
+                            
                         }
                         op = Console.ReadLine();
                         break;
@@ -81,8 +81,9 @@ namespace Proyecto1
                         op = Console.ReadLine();
                         break;
                     case "search":
-
-                        string nuevaLista = Global.manejoAr.BusquedaVersion("2");
+                        Console.WriteLine("Ingrese la versión que le interesa buscar")
+;                       string version = Console.ReadLine();
+                        string nuevaLista = Global.manejoAr.BusquedaVersion(version);
                         string[] nuevoArreglo = nuevaLista.Split("%");
                         int j = 0;
                         for (j = 0; j < 1; j++)

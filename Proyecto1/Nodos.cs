@@ -43,18 +43,21 @@ namespace Proyecto1
         {
             NodoVersiones<T> nuevaVersion = new NodoVersiones<T>(version);
 
-            if (primero == null)
+            nuevaVersion.enlace = primero;
+            primero = nuevaVersion;
+
+            /*if (ultimo == null)
             {
-                primero = nuevaVersion;
+                primero = null;
                 ultimo = nuevaVersion;
 
             }
             else
             {
-                ultimo.siguiente = nuevaVersion;
-                ultimo = nuevaVersion;
+                primero = nuevaVersion;
+                primero = nuevaVersion;
 
-            }
+            }*/
         }
 
         public string LeerArchivo(string nombretxt)
@@ -126,7 +129,7 @@ namespace Proyecto1
                 Console.WriteLine("\t" + ultimaVersion.fechaapoyo.ToString());
                 Console.WriteLine("\t" + ultimaVersion.comentario.ToString());
                 Console.WriteLine("\tContenido: " + ultimaVersion.contenido.Substring(12) + "\n");
-                actual = actual.siguiente;
+                actual = actual.enlace;
             }   
              
           }
@@ -142,8 +145,7 @@ namespace Proyecto1
             while (actual != null)
             {
                 nuevaLista = actual.dato.ToString();
-                actual = actual.siguiente;
-
+                actual = null;
             }
 
             return nuevaLista;
@@ -171,7 +173,7 @@ namespace Proyecto1
             while(actual != null)
             {
                 contador = contador + 1;
-                actual = actual.siguiente;
+                actual = actual.enlace;
             }
             return contador;
         }
@@ -198,7 +200,7 @@ namespace Proyecto1
                         break;
                     }
                 }
-                actual = actual.siguiente;
+                actual = actual.enlace;
             }
             return lista;
         }
