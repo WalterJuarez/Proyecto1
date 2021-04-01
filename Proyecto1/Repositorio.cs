@@ -16,6 +16,8 @@ namespace Proyecto1
         public string fecha;
         public string fechaapoyo { get; set; }
 
+        public string estado  { get; set; }
+
         public Repositorio(string comentario, string contenido)
         {
             
@@ -23,14 +25,16 @@ namespace Proyecto1
             this.comentario = comentario;
             this.contenido = contenido;
             fecha = DateTime.Now.ToString();
+            this.estado = "1";
         }
 
-        public Repositorio(string contadorauxiliar, string fechadeapoyo, string comentario, string contenido)
+        public Repositorio(string contadorauxiliar, string fechadeapoyo, string comentario, string contenido, string estado)
         {
             this.contadorauxiliar = contadorauxiliar;
             this.fechaapoyo = fechadeapoyo;
             this.comentario = comentario;
             this.contenido = contenido;
+            this.estado = estado;
         }
 
         public override string ToString()
@@ -38,7 +42,8 @@ namespace Proyecto1
             return $"Versión No.:  {contador}" + "%" +
                    $"Fecha: {fecha}" + "%" +
                    $"Comentario: {comentario}" + "%" +
-                   $"Contenido: {contenido}";
+                   $"Contenido: {contenido}" + "%" +
+                   $"Estado: {estado}";
 
         }
 

@@ -39,6 +39,7 @@ namespace Proyecto1
                 return NodoVacio = false;
             }
         }
+
         public void agregarVersion(T version)
         {
             NodoVersiones<T> nuevaVersion = new NodoVersiones<T>(version);
@@ -46,18 +47,6 @@ namespace Proyecto1
             nuevaVersion.enlace = primero;
             primero = nuevaVersion;
 
-            /*if (ultimo == null)
-            {
-                primero = null;
-                ultimo = nuevaVersion;
-
-            }
-            else
-            {
-                primero = nuevaVersion;
-                primero = nuevaVersion;
-
-            }*/
         }
 
         public string LeerArchivo(string nombretxt)
@@ -124,12 +113,19 @@ namespace Proyecto1
             {
                 lista = actual.dato.ToString();
                 nuevoRepositorio = lista.Split("%");
-                ultimaVersion = new Repositorio(nuevoRepositorio[0],nuevoRepositorio[1], nuevoRepositorio[2], nuevoRepositorio[3]);
-                Console.WriteLine("\t" + ultimaVersion.contadorauxiliar.ToString());
-                Console.WriteLine("\t" + ultimaVersion.fechaapoyo.ToString());
-                Console.WriteLine("\t" + ultimaVersion.comentario.ToString());
-                Console.WriteLine("\tContenido: " + ultimaVersion.contenido.Substring(12) + "\n");
-                actual = actual.enlace;
+                ultimaVersion = new Repositorio(nuevoRepositorio[0], nuevoRepositorio[1], nuevoRepositorio[2], nuevoRepositorio[3], nuevoRepositorio[4]);
+                if (nuevoRepositorio[4].Substring(8).Equals("1"))
+                {
+                    Console.WriteLine("\t" + ultimaVersion.contadorauxiliar.ToString());
+                    Console.WriteLine("\t" + ultimaVersion.fechaapoyo.ToString());
+                    Console.WriteLine("\t" + ultimaVersion.comentario.ToString());
+                    Console.WriteLine("\tContenido: " + ultimaVersion.contenido.Substring(12) + "\n");
+                    actual = actual.enlace;
+                }
+                else
+                {
+                    actual = actual.enlace;
+                }
             }   
              
           }
@@ -174,6 +170,7 @@ namespace Proyecto1
             {
                 contador = contador + 1;
                 actual = actual.enlace;
+                
             }
             return contador;
         }
@@ -192,7 +189,7 @@ namespace Proyecto1
                 for (i = 0; i < 1; i++)
                 {
                     nuevoRepositorio = lista.Split("%");
-                    Repositorio busquedaVersion = new Repositorio(nuevoRepositorio[0], null, null, null);
+                    Repositorio busquedaVersion = new Repositorio(nuevoRepositorio[0], null, null, null,null);
                     contenerVersion = busquedaVersion.contadorauxiliar.Substring(14);
                     if (contenerVersion.Equals(version))
                     {

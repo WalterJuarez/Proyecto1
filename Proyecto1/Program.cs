@@ -35,7 +35,7 @@ namespace Proyecto1
                             for (i = 0; i < 1; i++)
                             {
                                 string[] nuevoRepositorio = lista.Split("%");
-                                Repositorio ultimaVersion = new Repositorio(null, null, nuevoRepositorio[2], nuevoRepositorio[3]);
+                                Repositorio ultimaVersion = new Repositorio(null, null, nuevoRepositorio[2], nuevoRepositorio[3],nuevoRepositorio[4]);
                                 contenidoanterior = ultimaVersion.contenido.ToString();
                             }
                             Console.WriteLine(contenidoanterior.Substring(11));
@@ -88,11 +88,19 @@ namespace Proyecto1
                         int j = 0;
                         for (j = 0; j < 1; j++)
                         {
-                            Repositorio ultimaVersion = new Repositorio(nuevoArreglo[0], nuevoArreglo[1], nuevoArreglo[2], nuevoArreglo[3]);
-                            Console.WriteLine("\t" + ultimaVersion.contadorauxiliar.ToString());
-                            Console.WriteLine("\t" + ultimaVersion.fechaapoyo.ToString());
-                            Console.WriteLine("\t" + ultimaVersion.comentario.ToString());
-                            Console.WriteLine("\t" + ultimaVersion.contenido.ToString());
+                            Repositorio ultimaVersion = new Repositorio(nuevoArreglo[0], nuevoArreglo[1], nuevoArreglo[2], nuevoArreglo[3],nuevoArreglo[4]);
+                            if (nuevoArreglo[4].Substring(8).Equals("1"))
+                            {
+                                Console.WriteLine("\t" + ultimaVersion.contadorauxiliar.ToString());
+                                Console.WriteLine("\t" + ultimaVersion.fechaapoyo.ToString());
+                                Console.WriteLine("\t" + ultimaVersion.comentario.ToString());
+                                Console.WriteLine("\t" + ultimaVersion.contenido.ToString());
+                            }
+                            else
+                            {
+                                Console.WriteLine("LA VERSIÓN HA SIDO ELIMINADA");
+                            }
+                            
                         }
                         op = Console.ReadLine();
                         break;
