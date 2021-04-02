@@ -142,6 +142,11 @@ namespace Proyecto1
                                         Console.WriteLine("\t" + ultimaVersion.comentario.ToString());
                                         Console.WriteLine("\t" + ultimaVersion.contenido.ToString());
                                         Console.ForegroundColor = ConsoleColor.White;
+                                        StreamWriter escribirTXT = new StreamWriter(Global.nuevoPath);
+                                        escribirTXT.Write(ultimaVersion.contenido.ToString().Substring(12));
+                                        escribirTXT.Close();
+                                        /*escribirTXT.Write(ultimaVersion.contenido.ToString());
+                                        escribirTXT.Close();*/
                                     }
                                 }
                             }

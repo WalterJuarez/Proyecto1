@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+//Clase que servirá de repositorio de objetos, para posteriormente enviarlos a la lista enlazada
+//Tambien servirá de apoyo para recibir nuevamente los objetos individualmente y de este forma poder acceder a sus atributos por separado
 namespace Proyecto1
 {
     class Repositorio
