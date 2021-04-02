@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Proyecto1
@@ -13,30 +14,81 @@ namespace Proyecto1
             string contenido;
             string nombreAr;
 
-
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write(codSys);
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
             op = Console.ReadLine();
 
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write("Para iniciar el programa teclee init en consola\\");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             string inicializar = Console.ReadLine();
-            string folderParh = @"C:\Users\wilso\OneDrive\Escritorio\Mariano Galvez\Tercer año 2021\Primer Semestre\Programación 3\Proyecto 1\Proyecto1\temp";
-            string _pathTexto = @"C:\Users\wilso\OneDrive\Escritorio\Mariano Galvez\Tercer año 2021\Primer Semestre\Programación 3\Proyecto 1\Proyecto1\temp\";
+            Console.ForegroundColor = ConsoleColor.White;
             if (inicializar.Equals("init"))
             {
-                if (!Directory.Exists(folderParh))
+                if (!Directory.Exists(Global.folderParh))
                 {
-                    Directory.CreateDirectory(folderParh);
-                    Console.WriteLine(folderParh);
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Directory.CreateDirectory(Global.folderParh);
+                    Console.WriteLine("Se creó la siguiente ruta de acceso");
+                    Console.WriteLine(Global.folderParh+"\\");
+                    Console.ForegroundColor = ConsoleColor.White;
+
+                }
+                else
+                {
+                    Console.WriteLine("La ruta de acceso ya existe y contiene los siguientes archvios\n");
+                    string[] lita = new string[10];
+                    lita = Directory.GetFiles(Global.folderParh);
+                    int i = 0;
+                        for (i = 0; i < lita.Length; i++)
+                        {
+                            Console.WriteLine(lita[i].ToString()+"\n");
+                        }
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Se recomienda eliminar la ruta anterior para crear una nueva y evitar problemas de compatibilidad, desea elminar? (si/no)");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    string eliminar = Console.ReadLine();
+                    string patheliminar;
+                    if (eliminar.Equals("si"))
+                    {
+                        for (i = 0; i < lita.Length; i++)
+                        { 
+                            File.Delete(lita[i].ToString());
+                        }
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        Directory.Delete(Global.folderParh);
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("La ruta fue elminada con exito, presione enter para crear una nueva");
+                        string espera = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Directory.CreateDirectory(Global.folderParh);
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("Se creó la siguiente ruta de acceso");
+                        Console.WriteLine(Global.folderParh + "\\");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.WriteLine("La ruta de acceso que se utilizará es");
+                        Console.WriteLine(Global.folderParh + "\\");
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
 
                 }
                 try
                 {
-                    Console.WriteLine("Ingrese el nombre del txt que desea crear");
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.Write("\nIngrese el nombre del txt que desea crear: ");
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
                     Global.NombreArch = Console.ReadLine()+".txt";
-                    Global.nuevoPath = _pathTexto + Global.NombreArch;
+                    Global.nuevoPath = Global._pathTexto + Global.NombreArch;
                     StreamWriter sw = new StreamWriter(Global.nuevoPath, true);
                     sw.Close();
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("Archivo Creado");
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 catch (FileNotFoundException)
                 {
@@ -67,22 +119,25 @@ namespace Proyecto1
                                 }
                                 if (!Global.manejoAr.CompararContenido(contenido, contenidoanterior.Substring(11)))
                                 {
-                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                    Console.ForegroundColor = ConsoleColor.DarkCyan;
                                     Console.WriteLine(Global.nuevoPath + "\\" + "En el archivo txt existe una modificación, se crea una nueva versión, por favor presione Enter");
                                     Console.ForegroundColor = ConsoleColor.White;
                                     Console.ReadLine();
                                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                                     Console.Write(Global.nuevoPath + "\\" + "Ingrese un comentario para el repositorio\\");
-                                    Console.ForegroundColor = ConsoleColor.White;
+                                    Console.ForegroundColor = ConsoleColor.DarkGreen;
                                     comentario = Console.ReadLine();
+                                    Console.ForegroundColor = ConsoleColor.White;
                                     Global.manejoAr.agregarVersion(new Repositorio(comentario, contenido));
-                                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                                    Console.ForegroundColor = ConsoleColor.DarkCyan;
                                     Console.WriteLine(Global.nuevoPath + "\\" + "Se actualiza el nodo exitosamente");
                                     Console.ForegroundColor = ConsoleColor.White;
                                 }
                                 else
                                 {
+                                    Console.ForegroundColor = ConsoleColor.DarkRed;
                                     Console.WriteLine("El txt no sufrio ninguna modificación");
+                                    Console.ForegroundColor = ConsoleColor.White;
                                 }
 
                             }
@@ -90,10 +145,13 @@ namespace Proyecto1
                             {
                                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                                 Console.Write(Global.nuevoPath + "\\" + "Ingrese un comentario para el repositorio\\");
-                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.ForegroundColor = ConsoleColor.DarkGreen;
                                 comentario = Console.ReadLine();
+                                Console.ForegroundColor = ConsoleColor.White;
                                 Global.manejoAr.agregarVersion(new Repositorio(comentario, contenido));
+                                Console.ForegroundColor = ConsoleColor.DarkCyan;
                                 Console.WriteLine(Global.nuevoPath + "\\" + "Se almacenó el nodo exitosamente");
+                                Console.ForegroundColor = ConsoleColor.White;
 
                             }
                             op = Console.ReadLine();
@@ -102,18 +160,26 @@ namespace Proyecto1
                         case "read":
                             Console.Write(Global.nuevoPath + "\\");
                             nombreAr = Console.ReadLine();
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
                             Console.WriteLine(Global.manejoAr.LeerArchivo(nombreAr));
+                            Console.ForegroundColor = ConsoleColor.White;
                             op = Console.ReadLine();
                             break;
                         case "dir":
+                            Console.ForegroundColor = ConsoleColor.DarkCyan;
                             Opciones();
                             Console.Write(codSys);
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
                             op = Console.ReadLine();
+                            Console.ForegroundColor = ConsoleColor.White;
                             break;
                         case "search":
                             string version;
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
                             Console.Write(Global.nuevoPath + "\\" + "Ingrese la versión que le interesa buscar\\");
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
                             version = Console.ReadLine();
+                            Console.ForegroundColor = ConsoleColor.White;
                             string nuevaLista = Global.manejoAr.BusquedaVersion(version);
                             int j = 0;
                             if (nuevaLista != null)
@@ -124,16 +190,20 @@ namespace Proyecto1
                                     Repositorio ultimaVersion = new Repositorio(nuevoArreglo[0], nuevoArreglo[1], nuevoArreglo[2], nuevoArreglo[3], nuevoArreglo[4]);
                                     if (nuevoArreglo[4].Substring(8).Equals("1"))
                                     {
+                                        Console.ForegroundColor = ConsoleColor.DarkCyan;
                                         Console.WriteLine("\t" + ultimaVersion.contadorauxiliar.ToString());
                                         Console.WriteLine("\t" + ultimaVersion.fechaapoyo.ToString());
                                         Console.WriteLine("\t" + ultimaVersion.comentario.ToString());
                                         Console.WriteLine("\t" + ultimaVersion.contenido.ToString());
+                                        Console.ForegroundColor = ConsoleColor.White;
                                     }
                                 }
                             }
                             else
                             {
+                                Console.ForegroundColor = ConsoleColor.DarkRed;
                                 Console.WriteLine("LA VERSIÓN NO EXISTE");
+                                Console.ForegroundColor = ConsoleColor.White;
                             }
 
 
@@ -142,12 +212,16 @@ namespace Proyecto1
                         case "binnacle":
                             Console.ForegroundColor = ConsoleColor.DarkGreen;
                             Global.manejoAr.recorre();
+                            Console.ForegroundColor = ConsoleColor.White;
                             op = Console.ReadLine();
                             break;
                         case "delete":
                             string eliminar;
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
                             Console.Write(Global.nuevoPath + "\\" + "Ingrese la versión que desea eliminar\\");
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
                             version = Console.ReadLine();
+                            Console.ForegroundColor = ConsoleColor.White;
                             Global.manejoAr.eliminarNodo(Global.manejoAr.obtenerIndice(version) - 1);
                             op = Console.ReadLine();
                             break;
