@@ -7,9 +7,8 @@ namespace Proyecto1
 {
     class Nodos<T>
     { 
-
+        //Se crean los Nodos necesarios para el buen funcionamiento de la Lista
         public NodoVersiones<T> actual { get; set; }
-        public NodoVersiones<T> ultimo { get; set; }
         public NodoVersiones<T> primero { get; set; }
         public NodoVersiones<T> anterior { get; set; }
 
@@ -23,12 +22,12 @@ namespace Proyecto1
         public Nodos()
         {
             primero = null;
-            ultimo = null;
             actual = null;
             anterior = null;
         }
 
-        /*Función que valida si los nodos se encuentran vacios*/
+        /*Función que valida si la lista se encuentra vacia, con el fin de determinar si se debe o no
+         crear como cabeza de la lista*/
         public bool validarNodos()
         {
             bool NodoVacio;
@@ -42,6 +41,7 @@ namespace Proyecto1
             }
         }
 
+        //Método encargado de crear Nodos en la cabeza de la Lista
         public void agregarVersion(T version)
         {
             NodoVersiones<T> nuevaVersion = new NodoVersiones<T>(version);
@@ -52,6 +52,8 @@ namespace Proyecto1
                     
 
         }
+
+        //Método que servirá para leer el contendio del txt
 
         public string LeerArchivo(string nombretxt)
         {
@@ -77,6 +79,7 @@ namespace Proyecto1
         }
 
    
+        //Método encargado de recorrer e imprimir la Lista enlazada, según el formato requerito en el documento
         public void recorre()
         {
             actual = primero;
@@ -105,6 +108,7 @@ namespace Proyecto1
         }
 
 
+        //Este método servirá de apoyo para devolver unicamente el primer nodo de la lista
         public string recorredeapoyo()
         {
 
@@ -122,6 +126,8 @@ namespace Proyecto1
 
         }
 
+        //Este método servirá para comparar el contenido de la última versión, y el contenido del txt
+        //por lo que necesita de dos parametros, contenido txt y contenido version ultima
         public bool CompararContenido(string contenidonuevo, string contenido_anterior)
         {
 
@@ -136,6 +142,9 @@ namespace Proyecto1
 
         }
 
+
+        //Función que sirve para llevar un control de las versiones que han sido almacenadas, con el fin de llevar
+        //un orden cronologico de las Versiones en la Lista enlazada
         public int DevueveCorrelativoVersion()
         {
          
@@ -167,6 +176,8 @@ namespace Proyecto1
         }
 
 
+        //Esta función servirá para buscar una versión, tomar en cuenta que recibe un parametro, ya que no se buscará
+        //por index sino que por contenido
         public string BusquedaVersion(string version)
         {
             actual = primero;
@@ -175,6 +186,9 @@ namespace Proyecto1
             string[] nuevoRepositorio = null;
             while (actual != null)
             {
+                //Se recorre hasta llegar al nodo indico para esto se recorre todo el contenido del nodo, a modo de
+                //obtener el numero de la versión y luego de que coincida, retornar en modo de lista, la información
+                //Del nodo
                 int i = 0;
                 for (i = 0; i < 1; i++)
                 {
@@ -193,6 +207,8 @@ namespace Proyecto1
             return null;
         }
 
+        //Se utiliza esta función, para llevar el conteo de un nodo para posteriormete buscarlo por index en la lista 
+        //enlazada
         public int obtenerIndice(string version)
         {
             actual = primero;
@@ -204,6 +220,8 @@ namespace Proyecto1
 
             while (actual != null && !encontrado)
             {
+                //se recorre cada nodo con la finalidad de llegar hasta la versión deseada, y luego con la ayuda
+                //de un contador se extrae la posición, por interación, este servirá de pivote para realizar la elmiminación de nodos
                 int i = 0;
                 lista = actual.dato.ToString();
                 for (i = 0; i < 1; i++)
@@ -226,16 +244,19 @@ namespace Proyecto1
             return contador;
         }
 
-
+        //Esta función realiza la elminación fisica del nodo, recibe por parametros el index extraido por la 
+        //Función obtenerIndice
         public void eliminarNodo( int index)
         {
-
+            //Se compara si el nodo es la cabeza, y se quita el enlace para pasarlo al dato siguiente de la lista
             if (index == 0)
             {
                 primero = primero.siguiente;
             }
             else
             {
+                //si el nodo no es la cabeza, se realiza una interación del index recibido y la lista, con el fin
+                //de llegar a un nodo anterior al index recibido
                 int contador = 0;
                 NodoVersiones<T> temporal = primero;
                 while (contador < index - 1)
@@ -243,37 +264,13 @@ namespace Proyecto1
                     temporal = temporal.siguiente;
                     contador++;
                 }
+                //luego de asignar a temporal el nodo anterior al index recibido, se realiza el enlace
+                //al nodo siguiente del siguiente, ingnorando de esta forma el nodo que esta en la posición del index recibido
                 temporal.siguiente = temporal.siguiente.siguiente;
 
             }
 
         }
-
-
-        /*public void modificarNodo(T version, int index)
-        {
-
-            if (index == 0)
-            {
-   
-                NodoVersiones<T> nuevoNodo = new NodoVersiones<T>(version);
-                nuevoNodo.siguiente = primero;
-                primero = nuevoNodo;
-            }
-            else
-            {
-                int contador = 0;
-                NodoVersiones<T> temporal = primero;
-                while (contador < index - 1)
-                {
-                    temporal = temporal.siguiente;
-                    contador++;
-                }
-                temporal.siguiente = temporal.siguiente.siguiente;
-
-            }
-
-        }*/
 
     }
 }

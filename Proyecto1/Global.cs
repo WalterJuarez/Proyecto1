@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Proyecto1
-{
+{//Se cera una clase global, con el fin de acceder a la lista enlazada y los paths en cualquier momento del sistema
     class Global
     {
         public static Nodos<Repositorio> manejoAr = new Nodos<Repositorio>();
