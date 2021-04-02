@@ -23,8 +23,10 @@ namespace Proyecto1
                 {
                     case "create":
                         Console.Write(Global.manejoAr.pathDirectorio());
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         nombreAr = Console.ReadLine();
                         contenido = Convert.ToString(Global.manejoAr.LeerArchivo(nombreAr));
+                        Console.ForegroundColor = ConsoleColor.White;
                         /*Se agregó este nuevo bloque de if para validar si se almacenará o no un nodo*/
                         if (!Global.manejoAr.validarNodos())
                         {
@@ -61,7 +63,7 @@ namespace Proyecto1
 
                         }
                         op = Console.ReadLine();
-                        break;
+                            break;
 
                     case "read":
                         Console.Write(Global.manejoAr.pathDirectorio());
@@ -79,38 +81,49 @@ namespace Proyecto1
                         Console.Write(Global.manejoAr.pathDirectorio() + "Ingrese la versión que le interesa buscar\\");
                         version = Console.ReadLine();
                         string nuevaLista = Global.manejoAr.BusquedaVersion(version);
-                        string[] nuevoArreglo = nuevaLista.Split("%");
                         int j = 0;
-                        for (j = 0; j < 1; j++)
+                        if (nuevaLista != null)
                         {
-                            Repositorio ultimaVersion = new Repositorio(nuevoArreglo[0], nuevoArreglo[1], nuevoArreglo[2], nuevoArreglo[3], nuevoArreglo[4]);
-                            if (nuevoArreglo[4].Substring(8).Equals("1"))
+                            string[] nuevoArreglo = nuevaLista.Split("%");
+                            for (j = 0; j < 1; j++)
                             {
-                                Console.WriteLine("\t" + ultimaVersion.contadorauxiliar.ToString());
-                                Console.WriteLine("\t" + ultimaVersion.fechaapoyo.ToString());
-                                Console.WriteLine("\t" + ultimaVersion.comentario.ToString());
-                                Console.WriteLine("\t" + ultimaVersion.contenido.ToString());
+                                Repositorio ultimaVersion = new Repositorio(nuevoArreglo[0], nuevoArreglo[1], nuevoArreglo[2], nuevoArreglo[3], nuevoArreglo[4]);
+                                if (nuevoArreglo[4].Substring(8).Equals("1"))
+                                {
+                                    Console.WriteLine("\t" + ultimaVersion.contadorauxiliar.ToString());
+                                    Console.WriteLine("\t" + ultimaVersion.fechaapoyo.ToString());
+                                    Console.WriteLine("\t" + ultimaVersion.comentario.ToString());
+                                    Console.WriteLine("\t" + ultimaVersion.contenido.ToString());
+                                }
                             }
-                            else
-                            {
-                                Console.WriteLine("LA VERSIÓN HA SIDO ELIMINADA");
-                            }
-
                         }
+                        else
+                        {
+                            Console.WriteLine("LA VERSIÓN NO EXISTE");
+                        }
+
+                        
                         op = Console.ReadLine();
                         break;
                     case "binnacle":
-                        Console.WriteLine("\nDATOS EN BITACORA\n");
+                        Console.ForegroundColor = ConsoleColor.DarkGreen;
                         Global.manejoAr.recorre();
                         op = Console.ReadLine();
                         break;
                     case "delete":
+                        string eliminar;
+                        Console.Write(Global.manejoAr.pathDirectorio() + "Ingrese la versión que desea eliminar\\");
+                        version = Console.ReadLine();
+                        Global.manejoAr.eliminarNodo(Global.manejoAr.obtenerIndice(version)-1);
+                        op = Console.ReadLine();
                         break;
 
                     default:
-                        Console.Write("error de comando");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        /*Console.Write("error de comando");*/
                         Console.Write(codSys);
                         op = Console.ReadLine();
+                        
                         break;
 
                 }
