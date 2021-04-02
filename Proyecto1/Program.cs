@@ -11,8 +11,8 @@ namespace Proyecto1
             string comentario;
             string contenido;
             string nombreAr;
-            
-            
+
+
             Console.Write(codSys);
             op = Console.ReadLine();
 
@@ -24,12 +24,10 @@ namespace Proyecto1
                     case "create":
                         Console.Write(Global.manejoAr.pathDirectorio());
                         nombreAr = Console.ReadLine();
-                        contenido = Global.manejoAr.LeerArchivo(nombreAr);
+                        contenido = Convert.ToString(Global.manejoAr.LeerArchivo(nombreAr));
                         /*Se agregó este nuevo bloque de if para validar si se almacenará o no un nodo*/
                         if (!Global.manejoAr.validarNodos())
                         {
-                            Console.WriteLine("LA LISTA ENLAZADA CONTIENE DATOS");
-
                             string lista = Global.manejoAr.recorredeapoyo();
                             string contenidoanterior = "";
                             int i = 0;
@@ -52,6 +50,7 @@ namespace Proyecto1
                             {
                                 Console.WriteLine("El txt no sufrio ninguna modificación");
                             }
+
                         }
                         else
                         {
@@ -77,14 +76,14 @@ namespace Proyecto1
                         break;
                     case "search":
                         string version;
-                        Console.Write(Global.manejoAr.pathDirectorio() + "Ingrese la versión que le interesa buscar\\")
-;                       version = Console.ReadLine();
+                        Console.Write(Global.manejoAr.pathDirectorio() + "Ingrese la versión que le interesa buscar\\");
+                        version = Console.ReadLine();
                         string nuevaLista = Global.manejoAr.BusquedaVersion(version);
                         string[] nuevoArreglo = nuevaLista.Split("%");
                         int j = 0;
                         for (j = 0; j < 1; j++)
                         {
-                            Repositorio ultimaVersion = new Repositorio(nuevoArreglo[0], nuevoArreglo[1], nuevoArreglo[2], nuevoArreglo[3],nuevoArreglo[4]);
+                            Repositorio ultimaVersion = new Repositorio(nuevoArreglo[0], nuevoArreglo[1], nuevoArreglo[2], nuevoArreglo[3], nuevoArreglo[4]);
                             if (nuevoArreglo[4].Substring(8).Equals("1"))
                             {
                                 Console.WriteLine("\t" + ultimaVersion.contadorauxiliar.ToString());
@@ -96,7 +95,7 @@ namespace Proyecto1
                             {
                                 Console.WriteLine("LA VERSIÓN HA SIDO ELIMINADA");
                             }
-                            
+
                         }
                         op = Console.ReadLine();
                         break;
@@ -116,8 +115,8 @@ namespace Proyecto1
 
                 }
             }
-            
-            
+
+
         }
         public static void Opciones()
         {

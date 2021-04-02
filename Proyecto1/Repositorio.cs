@@ -16,12 +16,12 @@ namespace Proyecto1
         public string fecha;
         public string fechaapoyo { get; set; }
 
-        public string estado  { get; set; }
+        public string estado { get; set; }
 
         public Repositorio(string comentario, string contenido)
         {
-            
-            this.contador = Global.manejoAr.DevueveCorrelativoVersion()+1;
+
+            this.contador = Global.manejoAr.DevueveCorrelativoVersion() + 1;
             this.comentario = comentario;
             this.contenido = contenido;
             fecha = DateTime.Now.ToString();

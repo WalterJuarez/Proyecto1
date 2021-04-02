@@ -8,11 +8,11 @@ namespace Proyecto1
     class Nodos<T>
     {
         public static string _path = @"C:\Users\wilso\OneDrive\Escritorio\Mariano Galvez\Tercer año 2021\Primer Semestre\Programación 3\Proyecto 1\Proyecto1\temp\";
-        
+
         public NodoVersiones<T> actual { get; set; }
         public NodoVersiones<T> ultimo { get; set; }
         public NodoVersiones<T> primero { get; set; }
-        
+
 
         public string pathDirectorio()
         {
@@ -59,13 +59,13 @@ namespace Proyecto1
                 line = sr.ReadLine();
                 while (line != null)
                 {
-                    conten = conten+"\n" +line;
+                    conten = conten + "\n" + line;
                     line = sr.ReadLine();
                 }
                 sr.Close();
-                
+
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine("Exeption: " + e.Message);
             }
@@ -110,8 +110,6 @@ namespace Proyecto1
             Console.WriteLine("\t\t\tVersion No.\tFecha y Hora\t\tComentario\n");
             string[] nuevoRepositorio;
             Repositorio ultimaVersion;
-            Console.WriteLine("\tVersion No.\tFecha\tComentario\tContenido\n");
-            actual = actual.enlace;
             while (actual != null)
             {
                 lista = actual.dato.ToString();
@@ -119,23 +117,18 @@ namespace Proyecto1
                 ultimaVersion = new Repositorio(nuevoRepositorio[0], nuevoRepositorio[1], nuevoRepositorio[2], nuevoRepositorio[3], nuevoRepositorio[4]);
                 if (nuevoRepositorio[4].Substring(8).Equals("1"))
                 {
-
-                    Console.WriteLine("\t" + ultimaVersion.contadorauxiliar.ToString() + "\t" + ultimaVersion.fechaapoyo.ToString() +
-                    "\t" + ultimaVersion.comentario.ToString() + "\tContenido: " + ultimaVersion.contenido.ToString() + "\n");
-
-                    Console.WriteLine("\t\t\t\t" + ultimaVersion.contadorauxiliar.ToString().Substring(14)+ "\t" + ultimaVersion.fechaapoyo.ToString().Substring(7)+ 
+                    Console.WriteLine("\t\t\t\t" + ultimaVersion.contadorauxiliar.ToString().Substring(14) + "\t" + ultimaVersion.fechaapoyo.ToString().Substring(7) +
                         "\t" + ultimaVersion.comentario.ToString().Substring(12) + "\n");
-
                     actual = actual.enlace;
                 }
                 else
                 {
                     actual = actual.enlace;
                 }
-            }   
-             
-          }
-        
+            }
+
+        }
+
 
         public string recorredeapoyo()
         {
@@ -172,11 +165,11 @@ namespace Proyecto1
         {
             actual = primero;
             int contador = 0;
-            while(actual != null)
+            while (actual != null)
             {
                 contador = contador + 1;
                 actual = actual.enlace;
-                
+
             }
             return contador;
         }
@@ -195,7 +188,7 @@ namespace Proyecto1
                 for (i = 0; i < 1; i++)
                 {
                     nuevoRepositorio = lista.Split("%");
-                    Repositorio busquedaVersion = new Repositorio(nuevoRepositorio[0], null, null, null,null);
+                    Repositorio busquedaVersion = new Repositorio(nuevoRepositorio[0], null, null, null, null);
                     contenerVersion = busquedaVersion.contadorauxiliar.Substring(14);
                     if (contenerVersion.Equals(version))
                     {

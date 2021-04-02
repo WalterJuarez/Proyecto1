@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-se modifica todo com oestas
-=======
-hola mundo como estan
->>>>>>> ea2d25f
+Lo modifico
