@@ -6,8 +6,7 @@ using System.Text;
 namespace Proyecto1
 {
     class Nodos<T>
-    {
-        public static string _path = @"C:\Users\wilso\OneDrive\Escritorio\Mariano Galvez\Tercer año 2021\Primer Semestre\Programación 3\Proyecto 1\Proyecto1\temp\";
+    { 
 
         public NodoVersiones<T> actual { get; set; }
         public NodoVersiones<T> ultimo { get; set; }
@@ -18,7 +17,7 @@ namespace Proyecto1
 
         public string pathDirectorio()
         {
-            return _path;
+            return Global._path;
         }
 
         public Nodos()
@@ -60,7 +59,7 @@ namespace Proyecto1
             string conten = "";
             try
             {
-                StreamReader sr = new StreamReader(_path + nombretxt);
+                StreamReader sr = new StreamReader(Global._path + nombretxt);
                 line = sr.ReadLine();
                 while (line != null)
                 {
@@ -77,36 +76,7 @@ namespace Proyecto1
             return conten;
         }
 
-        /*Se crea Función que recorrera la lista del Nodo*/
-        /*public Array recorre()
-        {
-            actual = primero;
-            int contador = 0;
-            while (actual != null)
-            {
-                contador++;
-                actual = actual.siguiente;
-            }
-
-            actual = primero;
-            string[] nuevaLista = new string[contador];
-
-            int i = 0;
-            while (actual != null)
-            {
-                Console.WriteLine(actual.dato);
-                nuevaLista[i] = actual.dato.ToString();
-                actual = actual.siguiente;
-                i++;
-            }
-            return nuevaLista;
-        }*/
-
-        /*Se crea una función que servira como apoyo para reccorrer la lista del nodoenlazado
-         */
-
-
-
+   
         public void recorre()
         {
             actual = primero;
