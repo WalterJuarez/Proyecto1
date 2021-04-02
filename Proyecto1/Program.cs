@@ -28,7 +28,6 @@ namespace Proyecto1
                         /*Se agregó este nuevo bloque de if para validar si se almacenará o no un nodo*/
                         if (!Global.manejoAr.validarNodos())
                         {
-                            Console.WriteLine("La lista enlazada contiene datos");
                             string lista = Global.manejoAr.recorredeapoyo();
                             string contenidoanterior = "";
                             int i= 0;
@@ -38,32 +37,27 @@ namespace Proyecto1
                                 Repositorio ultimaVersion = new Repositorio(null, null, nuevoRepositorio[2], nuevoRepositorio[3],nuevoRepositorio[4]);
                                 contenidoanterior = ultimaVersion.contenido.ToString();
                             }
-                            Console.WriteLine(contenidoanterior.Substring(11));
+                                if (!Global.manejoAr.CompararContenido(contenido, contenidoanterior.Substring(11)))
+                                {
+                                    Console.WriteLine(Global.manejoAr.pathDirectorio() + "En el archivo txt existe una modificación, se crea una nueva versión, por favor presione Enter");
+                                    Console.ReadLine();
+                                    Console.Write(Global.manejoAr.pathDirectorio() + "Ingrese un comentario para el repositorio\\");
+                                    comentario = Console.ReadLine();
+                                    Global.manejoAr.agregarVersion(new Repositorio(comentario, contenido));
+                                    Console.WriteLine(Global.manejoAr.pathDirectorio() + "Se actualiza el nodo exitosamente");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("El txt no sufrio ninguna modificación");
+                                }
 
-
-                            if (!Global.manejoAr.CompararContenido(contenido, contenidoanterior.Substring(11)))
-                            {
-                                Console.WriteLine("EN EL ARCHIVO TXT EXISTE UNA MODIFICACIÓN, SE CREA UNA NUEVA VERSIÓN PRESIONE ENTER");
-                                Console.ReadLine();
-                                Console.Write(Global.manejoAr.pathDirectorio() + "Ingrese un comentario para el repositorio: ");
-                                comentario = Console.ReadLine();
-                                Global.manejoAr.agregarVersion(new Repositorio(comentario, contenido));
-                                Console.WriteLine("\n SE ACTUALIZA EL NODO\n");
                             }
-                            else
-                            {
-                                Console.WriteLine("La última versión no ha sufrido ningun cambio");
-                            }
-
-                        }
                         else
                         {
-                            Console.WriteLine("La lista enlazada no contiene datos\nSe procede a crear un nuevo repositorio");
-                            Console.Write(Global.manejoAr.pathDirectorio() + "Ingrese un comentario para el repositorio: ");
+                            Console.Write(Global.manejoAr.pathDirectorio() + "Ingrese un comentario para el repositorio\\");
                             comentario = Console.ReadLine();
                             Global.manejoAr.agregarVersion(new Repositorio(comentario, contenido));
-                            Console.WriteLine("Se creo un nuevo nodo");
-                            Console.WriteLine("Los datos que se encuentran en la lista son:\n");
+                            Console.WriteLine(Global.manejoAr.pathDirectorio() +"Se almacenó el nodo exitosamente");
                             
                         }
                         op = Console.ReadLine();
@@ -81,8 +75,9 @@ namespace Proyecto1
                         op = Console.ReadLine();
                         break;
                     case "search":
-                        Console.WriteLine("Ingrese la versión que le interesa buscar")
-;                       string version = Console.ReadLine();
+                        string version;
+                        Console.Write(Global.manejoAr.pathDirectorio() + "Ingrese la versión que le interesa buscar\\")
+;                       version = Console.ReadLine();
                         string nuevaLista = Global.manejoAr.BusquedaVersion(version);
                         string[] nuevoArreglo = nuevaLista.Split("%");
                         int j = 0;

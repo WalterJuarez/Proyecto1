@@ -106,7 +106,8 @@ namespace Proyecto1
         {
             actual = primero;
             string lista = "";
-            Console.WriteLine("DATOS ALMACENADOS EN LA LISTA\n");
+            Console.WriteLine("\t\t\t\tDATOS ALMACENADOS EN LA LISTA\n");
+            Console.WriteLine("\t\t\tVersion No.\tFecha y Hora\t\tComentario\n");
             string[] nuevoRepositorio;
             Repositorio ultimaVersion;
             while (actual != null)
@@ -116,10 +117,8 @@ namespace Proyecto1
                 ultimaVersion = new Repositorio(nuevoRepositorio[0], nuevoRepositorio[1], nuevoRepositorio[2], nuevoRepositorio[3], nuevoRepositorio[4]);
                 if (nuevoRepositorio[4].Substring(8).Equals("1"))
                 {
-                    Console.WriteLine("\t" + ultimaVersion.contadorauxiliar.ToString());
-                    Console.WriteLine("\t" + ultimaVersion.fechaapoyo.ToString());
-                    Console.WriteLine("\t" + ultimaVersion.comentario.ToString());
-                    Console.WriteLine("\tContenido: " + ultimaVersion.contenido.Substring(12) + "\n");
+                    Console.WriteLine("\t\t\t\t" + ultimaVersion.contadorauxiliar.ToString().Substring(14)+ "\t" + ultimaVersion.fechaapoyo.ToString().Substring(7)+ 
+                        "\t" + ultimaVersion.comentario.ToString().Substring(12) + "\n");
                     actual = actual.enlace;
                 }
                 else
