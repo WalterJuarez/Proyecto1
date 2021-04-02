@@ -119,13 +119,13 @@ namespace Proyecto1
                 ultimaVersion = new Repositorio(nuevoRepositorio[0], nuevoRepositorio[1], nuevoRepositorio[2], nuevoRepositorio[3], nuevoRepositorio[4]);
                 if (nuevoRepositorio[4].Substring(8).Equals("1"))
                 {
-<<<<<<< HEAD
+
                     Console.WriteLine("\t" + ultimaVersion.contadorauxiliar.ToString() + "\t" + ultimaVersion.fechaapoyo.ToString() +
                     "\t" + ultimaVersion.comentario.ToString() + "\tContenido: " + ultimaVersion.contenido.ToString() + "\n");
-=======
+
                     Console.WriteLine("\t\t\t\t" + ultimaVersion.contadorauxiliar.ToString().Substring(14)+ "\t" + ultimaVersion.fechaapoyo.ToString().Substring(7)+ 
                         "\t" + ultimaVersion.comentario.ToString().Substring(12) + "\n");
->>>>>>> ea2d25f
+
                     actual = actual.enlace;
                 }
                 else
