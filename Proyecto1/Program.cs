@@ -9,7 +9,7 @@ namespace Proyecto1
         static void Main(string[] args)
         {
             string op;
-            string codSys = "C:/";
+            string codSys = @"C:\";
             string comentario;
             string contenido;
             string nombreAr;
@@ -145,8 +145,7 @@ namespace Proyecto1
                                         StreamWriter escribirTXT = new StreamWriter(Global.nuevoPath);
                                         escribirTXT.Write(ultimaVersion.contenido.ToString().Substring(12));
                                         escribirTXT.Close();
-                                        /*escribirTXT.Write(ultimaVersion.contenido.ToString());
-                                        escribirTXT.Close();*/
+                                       
                                     }
                                 }
                             }
@@ -195,7 +194,9 @@ namespace Proyecto1
             }
             else
             {
+                Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("NO SE PUEDE INICIAR EL PROGRAMA");
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
 
@@ -228,7 +229,7 @@ namespace Proyecto1
             {
                 //Si la ruta de acceso existe, se da la opción para eliminar datos o utilizar los mismos
                 Console.WriteLine("La ruta de acceso ya existe y contiene los siguientes archvios\n");
-                
+
                 //se almacena el contenido del directorio en un Array para posteriormente recorrer
                 string[] lita = new string[10];
                 lita = Directory.GetFiles(Global.folderParh);
@@ -237,45 +238,52 @@ namespace Proyecto1
                 {
                     Console.WriteLine(lita[i].ToString() + "\n");
                 }
-
+                bool repetir;
                 //Pregunta para eliminación
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("Se recomienda eliminar la ruta anterior para crear una nueva y evitar problemas de compatibilidad, desea elminar? (si/no)");
-                Console.ForegroundColor = ConsoleColor.White;
-                string eliminar = Console.ReadLine();
-                string patheliminar;
-
-                //Se evalua que decide realizar el usuario
-                if (eliminar.Equals("si"))
+                do
                 {
-                    //Si él usuario indica que si, se elmina el contenido del Directorio
-                    for (i = 0; i < lita.Length; i++)
+                    repetir = false;
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine("Se recomienda eliminar la ruta anterior para crear una nueva y evitar problemas de compatibilidad, desea elminar? (si/no)");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    string eliminar = Console.ReadLine();
+                    string patheliminar;
+
+                    switch (eliminar)
                     {
-                        File.Delete(lita[i].ToString());
+                        case "si":
+                            //Si él usuario indica que si, se elmina el contenido del Directorio
+                            for (i = 0; i < lita.Length; i++)
+                            {
+                                File.Delete(lita[i].ToString());
+                            }
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            //Se elimina el Directorio completo
+                            Directory.Delete(Global.folderParh);
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("La ruta fue elminada con exito, presione enter para crear una nueva");
+                            string espera = Console.ReadLine();
+                            Console.ForegroundColor = ConsoleColor.White;
+                            //Se crea nuevo Directorio
+                            Directory.CreateDirectory(Global.folderParh);
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("Se creó la siguiente ruta de acceso");
+                            Console.WriteLine(Global.folderParh + "\\");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            break;
+                        case "no":
+                            //Si el usuario no quiere eliminar el Directorio, se utilizará el mismo
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.WriteLine("La ruta de acceso que se utilizará es");
+                            Console.WriteLine(Global.folderParh + "\\");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            break;
+                        default:
+                            Console.WriteLine("La opción ingresada no es valida");
+                            repetir = true;
+                            break;
                     }
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
-                    //Se elimina el Directorio completo
-                    Directory.Delete(Global.folderParh);
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine("La ruta fue elminada con exito, presione enter para crear una nueva");
-                    string espera = Console.ReadLine();
-                    Console.ForegroundColor = ConsoleColor.White;
-                    //Se crea nuevo Directorio
-                    Directory.CreateDirectory(Global.folderParh);
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine("Se creó la siguiente ruta de acceso");
-                    Console.WriteLine(Global.folderParh + "\\");
-                    Console.ForegroundColor = ConsoleColor.White;
-                }
-                else
-                {
-                    //Si el usuario no quiere eliminar el Directorio, se utilizará el mismo
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine("La ruta de acceso que se utilizará es");
-                    Console.WriteLine(Global.folderParh + "\\");
-                    Console.ForegroundColor = ConsoleColor.White;
-                }
-
+                } while (repetir);
             }
             try
             {

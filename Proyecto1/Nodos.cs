@@ -229,10 +229,10 @@ namespace Proyecto1
                     nuevoRepositorio = lista.Split("%");
                     Repositorio busquedaVersion = new Repositorio(nuevoRepositorio[0], nuevoRepositorio[1], nuevoRepositorio[2], nuevoRepositorio[3], nuevoRepositorio[4]);
                     contenerVersion = busquedaVersion.contadorauxiliar.Substring(14);
-
                     if (contenerVersion.Equals(version))
                     {
                         encontrado = true;
+                        
                     }
                  
                 }
@@ -240,35 +240,51 @@ namespace Proyecto1
                 actual = actual.siguiente;
             }
 
-            
-            return contador;
+            if (!encontrado)
+            {
+               return contador = 0;
+            }
+            else
+            {
+                return contador;
+            }
+           
         }
 
         //Esta función realiza la elminación fisica del nodo, recibe por parametros el index extraido por la 
         //Función obtenerIndice
         public void eliminarNodo( int index)
         {
-            //Se compara si el nodo es la cabeza, y se quita el enlace para pasarlo al dato siguiente de la lista
-            if (index == 0)
+            if (index < 0)
             {
-                primero = primero.siguiente;
+                Console.WriteLine("La versión no existe");
             }
-            else
-            {
-                //si el nodo no es la cabeza, se realiza una interación del index recibido y la lista, con el fin
-                //de llegar a un nodo anterior al index recibido
-                int contador = 0;
-                NodoVersiones<T> temporal = primero;
-                while (contador < index - 1)
+            else {
+                //Se compara si el nodo es la cabeza, y se quita el enlace para pasarlo al dato siguiente de la lista
+                if (index == 0)
                 {
-                    temporal = temporal.siguiente;
-                    contador++;
+                    primero = primero.siguiente; 
+                    Console.WriteLine("Registro eliminado con éxito");
                 }
-                //luego de asignar a temporal el nodo anterior al index recibido, se realiza el enlace
-                //al nodo siguiente del siguiente, ingnorando de esta forma el nodo que esta en la posición del index recibido
-                temporal.siguiente = temporal.siguiente.siguiente;
+                else
+                {
+                    //si el nodo no es la cabeza, se realiza una interación del index recibido y la lista, con el fin
+                    //de llegar a un nodo anterior al index recibido
+                    int contador = 0;
+                    NodoVersiones<T> temporal = primero;
+                    while (contador < index - 1)
+                    {
+                        temporal = temporal.siguiente;
+                        contador++;
+                    }
+                    //luego de asignar a temporal el nodo anterior al index recibido, se realiza el enlace
+                    //al nodo siguiente del siguiente, ingnorando de esta forma el nodo que esta en la posición del index recibido
+                    temporal.siguiente = temporal.siguiente.siguiente;
+                    Console.WriteLine("Registro eliminado con éxito");
 
+                }
             }
+            
 
         }
 
