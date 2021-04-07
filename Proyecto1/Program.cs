@@ -14,7 +14,6 @@ namespace Proyecto1
             string contenido;
             string nombreAr;
 
-            Console.WriteLine(Directory.GetCurrentDirectory());
             Console.ForegroundColor = ConsoleColor.DarkYellow;
             Console.Write(codSys);
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
